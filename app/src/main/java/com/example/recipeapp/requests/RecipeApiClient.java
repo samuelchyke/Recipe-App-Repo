@@ -47,7 +47,7 @@ public class RecipeApiClient {
         return mRecipes;
     }
 
-    private void searchRecipeApi(String query, int pageNumber){
+    public void searchRecipesApi(String query, int pageNumber){
         if(mRetrieveRecipeRunnable != null){
             mRetrieveRecipeRunnable = null;
         }
@@ -55,7 +55,6 @@ public class RecipeApiClient {
         final Future handler = AppExecutors.getInstance().networkIO().submit(mRetrieveRecipeRunnable);
 
         AppExecutors.getInstance().networkIO().schedule(new Runnable() {
-
             @Override
             public void run() {
                 handler.cancel(true);
