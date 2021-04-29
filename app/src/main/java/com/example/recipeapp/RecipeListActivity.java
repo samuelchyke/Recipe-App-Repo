@@ -5,16 +5,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.recipeapp.models.Recipe;
 import com.example.recipeapp.requests.RecipeApi;
 import com.example.recipeapp.requests.ServiceGenerator;
 import com.example.recipeapp.requests.response.RecipeResponse;
 import com.example.recipeapp.requests.response.RecipeSearchResponse;
 import com.example.recipeapp.util.Constants;
+import com.example.recipeapp.viewmodel.RecipeListViewModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,10 +31,16 @@ public class RecipeListActivity extends BaseActivity {
 
     private static final String TAG = "RecipeListActivity";
 
+    private RecipeListViewModel mRecipeListViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_list);
+
+        mRecipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
+
+
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(v -> {
@@ -37,6 +49,15 @@ public class RecipeListActivity extends BaseActivity {
         });
 
     }
+
+    private void subscribeObservers(){
+        mRecipeListViewModel.getRecipes().observe(this, new Observer<List<Recipe>>() {
+            @Override
+            public void onChanged(List<Recipe> recipes) {
+            }
+        });
+    }
+
 
 
 
