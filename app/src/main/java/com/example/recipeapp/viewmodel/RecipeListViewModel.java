@@ -5,17 +5,19 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.recipeapp.models.Recipe;
+import com.example.recipeapp.repository.RecipeRepository;
 
 import java.util.List;
 
 public class RecipeListViewModel extends ViewModel {
 
-    public MutableLiveData<List<Recipe>> mRecipes = new MutableLiveData<>();
+    public RecipeRepository mRecipeRepository;
 
     public RecipeListViewModel() {
+        mRecipeRepository = RecipeRepository.getInstance();
     }
 
     public LiveData<List<Recipe>> getRecipes() {
-        return mRecipes;
+        return mRecipeRepository.getRecipes();
     }
 }
