@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
@@ -54,8 +55,7 @@ implements OnRecipeListener {
         mRecipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
         initRecyclerView();
         subscribeObservers();
-        testRetrofitRequest();
-
+        initSearchView();
 
     }
 
@@ -82,6 +82,21 @@ implements OnRecipeListener {
         });
     }
 
+    private void initSearchView(){
+        final SearchView searchView = findViewById(R.id.search_bar);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchRecipeApi(query, 1);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
 
 
 
