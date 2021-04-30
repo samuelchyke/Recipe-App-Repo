@@ -8,7 +8,11 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recipeapp.adapters.OnRecipeListener;
+import com.example.recipeapp.adapters.RecipeRecyclerAdapter;
 import com.example.recipeapp.models.Recipe;
 import com.example.recipeapp.requests.RecipeApi;
 import com.example.recipeapp.requests.ServiceGenerator;
@@ -28,27 +32,37 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class RecipeListActivity extends BaseActivity {
+public class RecipeListActivity extends BaseActivity
+implements OnRecipeListener {
 
     private static final String TAG = "RecipeListActivity";
 
     private RecipeListViewModel mRecipeListViewModel;
+
+    private RecyclerView mRecyclerView;
+    private RecipeRecyclerAdapter mRecipeRecyclerAdapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_list);
 
+        mRecyclerView = findViewById(R.id.recipe_list);
 
         mRecipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
+        initRecyclerView();
         subscribeObservers();
+        testRetrofitRequest();
 
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(v -> {
-            testRetrofitRequest();
-//            testRetrofitRequest2();
-        });
+    }
+
+    private void initRecyclerView(){
+        mRecipeRecyclerAdapter = new RecipeRecyclerAdapter(this);
+        mRecyclerView.setAdapter(mRecipeRecyclerAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
@@ -62,6 +76,7 @@ public class RecipeListActivity extends BaseActivity {
             public void onChanged(List<Recipe> recipes) {
                 if(recipes!= null){
                     Testing.printRecipe(recipes, "recipes test");
+                    mRecipeRecyclerAdapter.setRecipes(recipes);
                 }
             }
         });
@@ -107,5 +122,15 @@ public class RecipeListActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onRecipeClick(int position) {
+
+    }
+
+    @Override
+    public void onCategoryClick(String category) {
+
     }
 }

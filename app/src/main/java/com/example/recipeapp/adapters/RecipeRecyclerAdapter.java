@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.recipeapp.R;
 import com.example.recipeapp.models.Recipe;
 
@@ -17,8 +19,7 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private List<Recipe> mRecipes;
     private OnRecipeListener mOnRecipeListener;
 
-    public RecipeRecyclerAdapter(List<Recipe> mRecipes, OnRecipeListener mOnRecipeListener) {
-        this.mRecipes = mRecipes;
+    public RecipeRecyclerAdapter(OnRecipeListener mOnRecipeListener) {
         this.mOnRecipeListener = mOnRecipeListener;
     }
 
@@ -32,6 +33,13 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
+        RequestOptions requestOptions = new RequestOptions();
+
+        Glide.with(viewHolder.itemView.getContext())
+                .setDefaultRequestOptions(requestOptions)
+                .load(mRecipes.get(i).getImage_url())
+                .into(((RecipeViewHolder)viewHolder).image);
+
         ((RecipeViewHolder)viewHolder).title.setText(mRecipes.get(i).getTitle());
         ((RecipeViewHolder)viewHolder).publisher.setText(mRecipes.get(i).getPublisher());
         ((RecipeViewHolder)viewHolder).socialScore.setText(String.valueOf(Math.round(mRecipes.get(i).getSocial_rank())));
@@ -39,7 +47,10 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemCount() {
-        return mRecipes.size();
+        if(mRecipes != null){
+            return mRecipes.size();
+        }
+        return 0;
     }
 
     public void setRecipes(List<Recipe> recipes){
