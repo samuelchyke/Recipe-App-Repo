@@ -57,6 +57,10 @@ implements OnRecipeListener {
         subscribeObservers();
         initSearchView();
 
+        if(!mRecipeListViewModel.isViewingRecipes()){
+            displaySearchCategories();
+        }
+
     }
 
     private void initRecyclerView(){
@@ -106,6 +110,13 @@ implements OnRecipeListener {
 
     @Override
     public void onCategoryClick(String category) {
+        mRecipeRecyclerAdapter.displayLoading();
+        mRecipeListViewModel.searchRecipesApi(category, 1);
+    }
 
+    private void displaySearchCategories(){
+        Log.d(TAG, "displaySearchCategories: called.");
+        mRecipeListViewModel.setIsViewingRecipes(false);
+        mRecipeRecyclerAdapter.displaySearchCategories();
     }
 }
