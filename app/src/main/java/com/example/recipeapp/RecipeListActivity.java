@@ -88,6 +88,7 @@ implements OnRecipeListener {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 searchRecipeApi(query, 1);
+                mRecipeRecyclerAdapter.displayLoading();
                 return false;
             }
 
