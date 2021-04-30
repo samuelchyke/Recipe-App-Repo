@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -94,47 +94,6 @@ implements OnRecipeListener {
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
-            }
-        });
-    }
-
-
-
-    private void testRetrofitRequest(){
-        searchRecipeApi("chicken", 1);
-    }
-
-    private void testRetrofitRequest2(){
-        RecipeApi recipeApi = ServiceGenerator.getRecipeApi();
-
-        //Do search using Retrofit
-        Call<RecipeResponse> responseCall = recipeApi
-                .getRecipe(
-                        Constants.API_KEY,
-                        "12142"
-                );
-
-        responseCall.enqueue(new Callback<RecipeResponse>() {
-            @Override
-            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
-                Log.d(TAG, "onResponse: Server Response: " + response.toString());
-                if(response.code() == 200){
-                    Log.d(TAG, "onResponse: " + response.body().toString());
-                    Recipe recipes = response.body().getRecipe();
-
-                }
-                else {
-                    try {
-                        Log.d(TAG, "onResponse: " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RecipeResponse> call, Throwable t) {
-
             }
         });
     }
