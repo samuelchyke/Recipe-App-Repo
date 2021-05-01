@@ -82,8 +82,10 @@ implements OnRecipeListener {
             @Override
             public void onChanged(List<Recipe> recipes) {
                 if(recipes!= null){
-                    Testing.printRecipe(recipes, "recipes test");
-                    mRecipeRecyclerAdapter.setRecipes(recipes);
+                    if(mRecipeListViewModel.isViewingRecipes()){
+                        Testing.printRecipe(recipes, "recipes test");
+                        mRecipeRecyclerAdapter.setRecipes(recipes);
+                    }
                 }
             }
         });
@@ -121,5 +123,16 @@ implements OnRecipeListener {
         Log.d(TAG, "displaySearchCategories: called.");
         mRecipeListViewModel.setIsViewingRecipes(false);
         mRecipeRecyclerAdapter.displaySearchCategories();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mRecipeListViewModel.onBackPressed()){
+            super.onBackPressed();
+        }
+        else{
+            displaySearchCategories();
+        }
+
     }
 }
