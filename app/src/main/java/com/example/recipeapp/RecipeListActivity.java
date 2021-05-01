@@ -44,7 +44,7 @@ implements OnRecipeListener {
     private RecyclerView mRecyclerView;
     private RecipeRecyclerAdapter mRecipeRecyclerAdapter;
 
-
+    private SearchView mSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,8 @@ implements OnRecipeListener {
         setContentView(R.layout.activity_recipe_list);
 
         mRecyclerView = findViewById(R.id.recipe_list);
+
+        mSearchView = findViewById(R.id.search_bar);
 
         mRecipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
         initRecyclerView();
@@ -84,6 +86,7 @@ implements OnRecipeListener {
                 if(recipes!= null){
                     if(mRecipeListViewModel.isViewingRecipes()){
                         Testing.printRecipe(recipes, "recipes test");
+                        mRecipeListViewModel.setIsPerformingQuery(false);
                         mRecipeRecyclerAdapter.setRecipes(recipes);
                     }
                 }
@@ -92,12 +95,12 @@ implements OnRecipeListener {
     }
 
     private void initSearchView(){
-        final SearchView searchView = findViewById(R.id.search_bar);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 searchRecipeApi(query, 1);
                 mRecipeRecyclerAdapter.displayLoading();
+                mSearchView.clearFocus();
                 return false;
             }
 
@@ -117,6 +120,7 @@ implements OnRecipeListener {
     public void onCategoryClick(String category) {
         mRecipeRecyclerAdapter.displayLoading();
         mRecipeListViewModel.searchRecipesApi(category, 1);
+        mSearchView.clearFocus();
     }
 
     private void displaySearchCategories(){
