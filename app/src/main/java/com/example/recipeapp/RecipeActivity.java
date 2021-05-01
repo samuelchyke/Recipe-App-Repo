@@ -12,6 +12,8 @@ import com.example.recipeapp.models.Recipe;
 
 public class RecipeActivity extends BaseActivity {
 
+    private static final String TAG = "RecipeActivity";
+
     // UI components
     private AppCompatImageView mRecipeImage;
     private TextView mRecipeTitle, mRecipeRank;
