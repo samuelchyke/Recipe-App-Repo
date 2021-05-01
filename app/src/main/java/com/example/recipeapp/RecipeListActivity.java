@@ -21,6 +21,7 @@ import com.example.recipeapp.requests.response.RecipeResponse;
 import com.example.recipeapp.requests.response.RecipeSearchResponse;
 import com.example.recipeapp.util.Constants;
 import com.example.recipeapp.util.Testing;
+import com.example.recipeapp.util.VerticalSpacingItemDecorator;
 import com.example.recipeapp.viewmodel.RecipeListViewModel;
 
 import java.io.IOException;
@@ -65,6 +66,8 @@ implements OnRecipeListener {
 
     private void initRecyclerView(){
         mRecipeRecyclerAdapter = new RecipeRecyclerAdapter(this);
+        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(30);
+        mRecyclerView.addItemDecoration(itemDecorator);
         mRecyclerView.setAdapter(mRecipeRecyclerAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
