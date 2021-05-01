@@ -1,5 +1,7 @@
 package com.example.recipeapp.viewmodel;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -9,11 +11,14 @@ import com.example.recipeapp.repository.RecipeRepository;
 
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class RecipeListViewModel extends ViewModel {
 
     private RecipeRepository mRecipeRepository;
     private boolean mIsViewingRecipes;
     private boolean mIsPerformingQuery;
+
 
     public RecipeListViewModel() {
         mRecipeRepository = RecipeRepository.getInstance();
@@ -57,5 +62,14 @@ public class RecipeListViewModel extends ViewModel {
         }
         return true;
     }
+
+    public void searchNextPage(){
+        Log.d(TAG, "searchNextPage: called.");
+        if(!mIsPerformingQuery
+                && mIsViewingRecipes){
+            mRecipeRepository.searchNextPage();
+        }
+    }
+
 
 }
