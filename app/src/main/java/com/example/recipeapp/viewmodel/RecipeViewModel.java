@@ -22,7 +22,7 @@ public class RecipeViewModel extends ViewModel {
     }
 
     public LiveData<Boolean> isRecipeRequestTimedOut(){
-        return mRecipeRepository.isRecipeRequestTimedout();
+        return mRecipeRepository.isRecipeRequestTimedOut();
     }
 
     public void setRetrievedRecipe(boolean retrievedRecipe){

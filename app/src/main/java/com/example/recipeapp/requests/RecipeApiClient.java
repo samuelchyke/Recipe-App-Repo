@@ -59,7 +59,7 @@ public class RecipeApiClient {
         return mRecipe;
     }
 
-    public LiveData<Boolean> isRecipeRequestTimedout(){
+    public LiveData<Boolean> isRecipeRequestTimedOut(){
         return mRecipeRequestTimeout;
     }
 
