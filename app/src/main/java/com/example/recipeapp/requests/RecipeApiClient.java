@@ -34,6 +34,10 @@ public class RecipeApiClient {
     private MutableLiveData<Recipe> mRecipe;
     private RetrieveRecipeRunnable mRetrieveRecipeRunnable;
 
+    private MutableLiveData<Boolean> mRecipeRequestTimeout = new MutableLiveData<>();
+
+
+
     // Singleton Pattern
     public static RecipeApiClient getInstance(){
         if(instance == null){
@@ -53,6 +57,10 @@ public class RecipeApiClient {
 
     public LiveData<Recipe> getRecipe(){
         return mRecipe;
+    }
+
+    public LiveData<Boolean> isRecipeRequestTimedout(){
+        return mRecipeRequestTimeout;
     }
 
     public void searchRecipesApi(String query, int pageNumber){
@@ -81,6 +89,7 @@ public class RecipeApiClient {
             @Override
             public void run() {
                 // let the user know it's timed out
+                mRecipeRequestTimeout.postValue(true);
                 handler.cancel(true);
             }
         }, NETWORK_TIMEOUT, TimeUnit.MILLISECONDS);
