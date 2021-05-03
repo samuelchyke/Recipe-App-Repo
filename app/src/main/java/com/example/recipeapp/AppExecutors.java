@@ -1,29 +1,45 @@
 package com.example.recipeapp;
 
-import androidx.lifecycle.MutableLiveData;
 
-import com.example.recipeapp.models.Recipe;
-import com.example.recipeapp.requests.RecipeApiClient;
+import android.os.Handler;
+import android.os.Looper;
 
-import java.util.List;
+import androidx.annotation.NonNull;
+
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class AppExecutors {
 
-    private static AppExecutors  instance;
+    private static AppExecutors instance;
 
-    // Singleton Pattern
-    public static AppExecutors  getInstance(){
+    public static AppExecutors getInstance(){
         if(instance == null){
             instance = new AppExecutors();
         }
         return instance;
     }
 
-    private final ScheduledExecutorService mNetworkIO = Executors.newScheduledThreadPool(3);
+    private final Executor mDiskIO = Executors.newSingleThreadExecutor();
 
-    public ScheduledExecutorService networkIO() {
-        return mNetworkIO;
+    private final Executor mMainThreadExecutor = new MainThreadExecutor();
+
+
+    public Executor diskIO(){
+        return mDiskIO;
+    }
+
+    public Executor mainThread(){
+        return mMainThreadExecutor;
+    }
+
+    private static class MainThreadExecutor implements Executor{
+
+        private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
+
+        @Override
+        public void execute(@NonNull Runnable command) {
+            mainThreadHandler.post(command);
+        }
     }
 }

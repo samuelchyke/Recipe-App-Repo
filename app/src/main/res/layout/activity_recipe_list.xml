@@ -1,37 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeListActivity">
+    tools:context="com.example.recipeapp.RecipeListActivity">
 
-
-    <com.google.android.material.appbar.AppBarLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/toolbar"
             app:layout_scrollFlags="scroll|enterAlways">
 
-            <androidx.appcompat.widget.SearchView
+            <android.support.v7.widget.SearchView
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:id="@+id/search_bar"
-                app:queryHint="Chicken..."/>
+                android:id="@+id/search_view"
+                app:queryHint="chicken breast...">
 
-        </androidx.appcompat.widget.Toolbar>
+            </android.support.v7.widget.SearchView>
 
-    </com.google.android.material.appbar.AppBarLayout>
+        </android.support.v7.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recipe_list"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </android.support.v7.widget.RecyclerView>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+

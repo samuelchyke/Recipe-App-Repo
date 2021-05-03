@@ -1,4 +1,6 @@
-package com.example.recipeapp.requests.response;
+package com.example.recipeapp.requests.responses;
+
+import androidx.annotation.Nullable;
 
 import com.example.recipeapp.models.Recipe;
 import com.google.gson.annotations.Expose;
@@ -10,7 +12,16 @@ public class RecipeResponse {
     @Expose()
     private Recipe recipe;
 
-    public Recipe getRecipe() {
+    @SerializedName("error")
+    @Expose()
+    private String error;
+
+    public String getError() {
+        return error;
+    }
+
+    @Nullable
+    public Recipe getRecipe(){
         return recipe;
     }
 
@@ -18,6 +29,7 @@ public class RecipeResponse {
     public String toString() {
         return "RecipeResponse{" +
                 "recipe=" + recipe +
+                ", error='" + error + '\'' +
                 '}';
     }
 }

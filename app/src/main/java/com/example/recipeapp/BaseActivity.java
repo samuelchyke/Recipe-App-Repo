@@ -7,24 +7,24 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.recipeapp.R;
+
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private ProgressBar mProgressBar;
+    public ProgressBar mProgressBar;
 
     @Override
     public void setContentView(int layoutResID) {
 
         ConstraintLayout constraintLayout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
-        FrameLayout fragmentLayout = constraintLayout.findViewById(R.id.activity_content);
-
-        getLayoutInflater().inflate(layoutResID, fragmentLayout, true);
-
+        FrameLayout frameLayout = constraintLayout.findViewById(R.id.activity_content);
         mProgressBar = constraintLayout.findViewById(R.id.progress_bar);
 
-        super.setContentView(layoutResID);
+        getLayoutInflater().inflate(layoutResID, frameLayout, true);
+        super.setContentView(constraintLayout);
     }
 
-    public void showProgressBar(boolean visible){
-        mProgressBar.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+    public void showProgressBar(boolean visibility){
+        mProgressBar.setVisibility(visibility ? View.VISIBLE : View.INVISIBLE);
     }
 }
