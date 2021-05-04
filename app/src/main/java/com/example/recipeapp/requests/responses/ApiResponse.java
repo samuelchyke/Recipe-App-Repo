@@ -6,8 +6,6 @@ import com.example.recipeapp.viewmodels.RecipeListViewModel;
 import java.io.IOException;
 
 import retrofit2.Response;
-
-
 /**
  * Generic class for handling responses from Retrofit
  * @param <T>
