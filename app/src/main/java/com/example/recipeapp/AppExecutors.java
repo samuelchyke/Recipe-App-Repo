@@ -10,7 +10,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class AppExecutors {
-
     private static AppExecutors instance;
 
     public static AppExecutors getInstance(){
