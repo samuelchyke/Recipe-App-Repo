@@ -151,7 +151,7 @@ public abstract class NetworkBoundResource<CacheObject, RequestObject> {
     private CacheObject processResponse(ApiResponse.ApiSuccessResponse response){
         return (CacheObject) response.getBody();
     }
-
+    
     private void setValue(Resource<CacheObject> newValue){
         if(results.getValue() != newValue){
             results.setValue(newValue);
