@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.Arrays;
 
+
 @Entity(tableName = "recipes")
 public class Recipe implements Parcelable{
 
