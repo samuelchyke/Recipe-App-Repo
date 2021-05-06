@@ -40,8 +40,7 @@ public class RecipeRepository {
     private RecipeRepository(Context context) {
         recipeDao = RecipeDatabase.getInstance(context).getRecipeDao();
     }
-
-
+    
     public LiveData<Resource<List<Recipe>>> searchRecipesApi(final String query, final int pageNumber){
         return new NetworkBoundResource<List<Recipe>, RecipeSearchResponse>(AppExecutors.getInstance()){
 
