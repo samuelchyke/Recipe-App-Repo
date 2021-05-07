@@ -1,5 +1,4 @@
 package com.example.recipeapp.viewmodels;
-
 import android.app.Application;
 import android.util.Log;
 
