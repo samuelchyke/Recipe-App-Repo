@@ -64,7 +64,7 @@ public class RecipeRepository {
                                     recipes[index].getPublisher(),
                                     recipes[index].getImage_url(),
                                     recipes[index].getSocial_rank()
-                                    
+
                             );
                         }
                         index++;
