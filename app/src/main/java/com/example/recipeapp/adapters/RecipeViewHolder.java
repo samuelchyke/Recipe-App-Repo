@@ -40,7 +40,6 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
     }
 
     public void onBind(Recipe recipe){
-
         requestManager
                 .load(recipe.getImage_url())
                 .into(image);

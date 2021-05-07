@@ -74,7 +74,6 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
                                 }
                                 break;
                             }
-
                             case ERROR:{
                                 Log.e(TAG, "onChanged: cannot refresh the cache." );
                                 Log.e(TAG, "onChanged: ERROR message: " + listResource.message );
