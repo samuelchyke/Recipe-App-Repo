@@ -26,7 +26,6 @@ public class ServiceGenerator {
 
             .build();
 
-
     private static Retrofit.Builder retrofitBuilder =
             new Retrofit.Builder()
                     .baseUrl(Constants.BASE_URL)
