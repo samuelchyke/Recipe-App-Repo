@@ -82,6 +82,7 @@ public class RecipeListViewModel extends AndroidViewModel {
             pageNumber++;
             executeSearch();
         }
+        
     }
 
     private void executeSearch(){
