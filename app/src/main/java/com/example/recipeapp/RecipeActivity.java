@@ -135,7 +135,7 @@ public class RecipeActivity extends BaseActivity {
                             ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT));
             mRecipeIngredientsContainer.addView(textView);
-            
+
         }
     }
 
