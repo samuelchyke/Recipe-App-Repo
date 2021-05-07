@@ -49,7 +49,7 @@ public class RecipeListViewModel extends AndroidViewModel {
             viewState.setValue(ViewState.CATEGORIES);
         }
     }
-    
+
     public LiveData<ViewState> getViewstate(){
         return viewState;
     }
@@ -139,6 +139,7 @@ public class RecipeListViewModel extends AndroidViewModel {
         });
     }
 
+    
     public void cancelSearchRequest(){
         if(isPerformingQuery){
             Log.d(TAG, "cancelSearchRequest: canceling the search request.");
