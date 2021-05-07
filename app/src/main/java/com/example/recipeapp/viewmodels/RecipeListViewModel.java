@@ -49,6 +49,7 @@ public class RecipeListViewModel extends AndroidViewModel {
             viewState.setValue(ViewState.CATEGORIES);
         }
     }
+    
     public LiveData<ViewState> getViewstate(){
         return viewState;
     }
@@ -82,7 +83,7 @@ public class RecipeListViewModel extends AndroidViewModel {
             pageNumber++;
             executeSearch();
         }
-        
+
     }
 
     private void executeSearch(){
