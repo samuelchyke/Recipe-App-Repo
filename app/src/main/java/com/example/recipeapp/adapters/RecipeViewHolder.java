@@ -21,6 +21,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
     RequestManager requestManager;
     ViewPreloadSizeProvider viewPreloadSizeProvider;
 
+    
     public RecipeViewHolder(@NonNull View itemView,
                             OnRecipeListener onRecipeListener,
                             RequestManager requestManager,
