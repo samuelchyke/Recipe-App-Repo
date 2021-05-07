@@ -84,6 +84,7 @@ public class RecipeActivity extends BaseActivity {
                                 showProgressBar(false);
                                 setRecipeProperties(recipeResource.data);
                                 break;
+                                
                             }
                         }
                     }
